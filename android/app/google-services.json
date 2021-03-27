@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "722208165186",
+    "firebase_url": "https://congtimviec.firebaseio.com",
+    "project_id": "congtimviec",
+    "storage_bucket": "congtimviec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722208165186:android:7dabc59c76987c6b74ccdb",
+        "android_client_info": {
+          "package_name": "com.congtv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722208165186-t9r7mbbhmcekl9p6ratp7d8lv61igdg3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.congtv",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "722208165186-febbp7jvpd8ut014vcpria1u6obf9bp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLdlc6S2dvF4N75rGBuoO6jP2Eko2vxrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722208165186-febbp7jvpd8ut014vcpria1u6obf9bp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
