@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:722208165186:android:7dabc59c76987c6b74ccdb",
         "android_client_info": {
-          "package_name": "com.congtv"
+          "package_name": "com.itjob"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "722208165186-t9r7mbbhmcekl9p6ratp7d8lv61igdg3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.congtv",
+            "package_name": "com.itjob",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },

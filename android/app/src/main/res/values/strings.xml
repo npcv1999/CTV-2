@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">CongTV</string>
+    <string name="app_name">ITJob</string>
     <string name="facebook_app_id">736047120658017</string>
     <string name="fb_login_protocol_scheme">fb736047120658017</string>
-
 </resources>
