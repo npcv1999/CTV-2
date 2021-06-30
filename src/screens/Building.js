@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
-import HomeBuilding from './HomeBuilding';
-import DetailBuilding from './DetailBuilding';
-import ListJob from '../Component/ListJob';
+import HomeBuilding from '../screens/HomeBuilding';
+import DetailBuilding from '../screens/DetailBuilding';
+import ListJob from '../components/ListJob';
 
 const Stack = createStackNavigator();
 export default function Building() {

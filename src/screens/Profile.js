@@ -3,18 +3,15 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   TouchableOpacity,
   Dimensions,
-  ImageBackground,
   Image,
 } from 'react-native';
-import {AuthContext} from '../navigation/AuthProvider';
+import {AuthContext} from '../navigations/AuthProvider';
 import Icon from 'react-native-vector-icons/Octicons';
 import {Avatar, Divider} from 'react-native-elements';
-import DialogLogOut from '../Component/DialogLogOut';
-import notifee from '@notifee/react-native';
-import Shape from '../Component/Shape';
+import DialogLogOut from '../components/DialogLogOut';
+import Shape from '../components/Shape';
 const W = Dimensions.get('window').width;
 
 const Profile = ({navigation}) => {
@@ -29,17 +26,23 @@ const Profile = ({navigation}) => {
               style={{
                 width: 90,
                 height: 90,
-                borderRadius: 90,
+                borderRadius: 45,
                 borderWidth: 1,
                 borderColor: '#4747ff',
               }}>
-              <Avatar
+              <Image
+                style={{width: 88, height: 88, borderRadius: 45}}
+                source={{
+                  uri: user.photoURL,
+                }}></Image>
+              {/* <Avatar
                 size={88}
+                avatarStyle={{resizeMode: 'contain'}}
                 rounded
                 source={{
                   uri: user.photoURL,
                 }}
-              />
+              /> */}
             </View>
           </Shape>
           <View style={styles.info}>
@@ -64,7 +67,7 @@ const Profile = ({navigation}) => {
           <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
             <View style={styles.about}>
               <Text style={{height: 40}}>
-                <Image source={require('../src/images/shield.png')}></Image>
+                <Image source={require('../images/shield.png')}></Image>
                 {'\t'}Chính sách bảo mật
               </Text>
               <Icon name="chevron-right" size={20}></Icon>
@@ -74,7 +77,7 @@ const Profile = ({navigation}) => {
           <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
             <View style={styles.about}>
               <Text style={{height: 40}}>
-                <Image source={require('../src/images/comments.png')}></Image>
+                <Image source={require('../images/comments.png')}></Image>
                 {'\t'}Trợ giúp và phản hồi
               </Text>
               <Icon name="chevron-right" size={20}></Icon>
@@ -84,7 +87,7 @@ const Profile = ({navigation}) => {
           <TouchableOpacity>
             <View style={styles.about}>
               <Text style={{height: 40}}>
-                <Image source={require('../src/images/reply.png')}></Image>
+                <Image source={require('../images/reply.png')}></Image>
                 {'\t'}Đánh giá ứng dụng
               </Text>
               <Icon name="chevron-right" size={20}></Icon>

@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import Loading from '../Component/Loading';
+import Loading from '../components/Loading';
 import {Image} from 'react-native-elements';
 import RNAnimated from 'react-native-animated-component';
 // import SkeletonPlaceholder from 'react-native-skeleton-placeholder';

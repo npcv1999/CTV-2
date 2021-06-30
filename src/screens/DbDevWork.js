@@ -9,7 +9,7 @@ import {
   Linking,
   ActivityIndicator,
 } from 'react-native';
-import Loading from '../Component/Loading';
+import Loading from '../components/Loading';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {Image} from 'react-native-elements';
 import RNAnimated from 'react-native-animated-component';
@@ -24,7 +24,7 @@ export default class DbDevWork extends React.Component {
     };
     this.arrayHolder = [];
   }
-  renderItem1 = (obj) => {
+  renderItem1 = obj => {
     return (
       <>
         <RNAnimated appearFrom="bottom" animationDuration={1000}>
@@ -59,7 +59,7 @@ export default class DbDevWork extends React.Component {
     );
   };
   //Key
-  keyExtractor = (item) => item.title;
+  keyExtractor = item => item.title;
   //Separator
   ItemSeparatorComponent = () => <View style={styles.separator}></View>;
   //EmptyItem
@@ -75,8 +75,8 @@ export default class DbDevWork extends React.Component {
   componentDidMount() {
     const url = BaseUrl.baseUrl + 'devwork.json';
     fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
+      .then(response => response.json())
+      .then(json => {
         console.log(json);
         this.setState(
           {
@@ -112,7 +112,7 @@ export default class DbDevWork extends React.Component {
     }
   }
   searchData(text) {
-    const newData = this.arrayHolder.filter((item) => {
+    const newData = this.arrayHolder.filter(item => {
       const itemData = item.title.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
@@ -133,7 +133,7 @@ export default class DbDevWork extends React.Component {
         <View style={styles.textInput}>
           <Icon name="search1" size={20}></Icon>
           <TextInput
-            onChangeText={(text) => this.searchData(text)}
+            onChangeText={text => this.searchData(text)}
             value={this.state.text}
             underlineColorAndroid="transparent"
             placeholder="Tìm kiếm ...                                                                       "

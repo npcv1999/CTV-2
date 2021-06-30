@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
-import {theme} from '../constants';
-import Block from '../Component/Block';
-import Text from '../Component/Text';
+import {theme} from '../utils/constants';
+import Block from '../components/Block';
+import Text from '../components/Text';
 export default class Sercurity extends Component {
   render() {
     return (

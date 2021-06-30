@@ -8,10 +8,10 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import Block from '../Component/Block';
-import Button1 from '../Component/Button1';
-import {theme} from '../constants';
-import Text from '../Component/Text';
+import Block from '../components/Block';
+import Button1 from '../components/Button1';
+import {theme} from '../utils/constants';
+import Text from '../components/Text';
 import ButtonSocial from './Social';
 
 const {width, height} = Dimensions.get('window');
@@ -28,7 +28,7 @@ class Welcome extends Component {
     };
   }
 
-  setRef = (c) => {
+  setRef = c => {
     this.listRef = c;
   };
 
@@ -242,9 +242,9 @@ class Welcome extends Component {
 
 Welcome.defaultProps = {
   illustrations: [
-    {id: 1, source: require('../src/images/enterprise.png')},
-    {id: 2, source: require('../src/images/job.png')},
-    {id: 3, source: require('../src/images/information.png')},
+    {id: 1, source: require('../images/enterprise.png')},
+    {id: 2, source: require('../images/job.png')},
+    {id: 3, source: require('../images/information.png')},
   ],
 };
 

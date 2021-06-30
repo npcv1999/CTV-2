@@ -1,35 +1,35 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Button, Alert} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
-import notifee from '@notifee/react-native';
-import {ImageBackground} from 'react-native';
-function notifiapp() {
-  async function onDisplayNotification() {
-    // Create a channel
-    const channelId = await notifee.createChannel({
-      id: 'default',
-      name: 'Default Channel',
-    });
-    // Display a notification
-    await notifee.displayNotification({
-      title: 'Chào ',
-      body: 'Bạn có việc làm mới',
-      android: {
-        channelId,
-        setSmallIcon: 'ic_launcher', // optional, defaults to 'ic_launcher'.
-      },
-    });
-  }
-  async function requestUserPermission() {
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-    if (enabled) {
-      console.log('Authorization status:', authStatus);
-    }
-  }
+// import notifee from '@notifee/react-native';
+function notifiapp() {
+  // async function onDisplayNotification() {
+  // Create a channel
+  //   const channelId = await notifee.createChannel({
+  //     id: 'default',
+  //     name: 'Default Channel',
+  //   });
+  //   // Display a notification
+  //   await notifee.displayNotification({
+  //     title: 'Chào ',
+  //     body: 'Bạn có việc làm mới',
+  //     android: {
+  //       channelId,
+  //       setSmallIcon: 'ic_launcher', // optional, defaults to 'ic_launcher'.
+  //     },
+  //   });
+  // }
+  // async function requestUserPermission() {
+  //   const authStatus = await messaging().requestPermission();
+  //   const enabled =
+  //     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+  //     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+  //   if (enabled) {
+  //     console.log('Authorization status:', authStatus);
+  //   }
+  // }
   async function onAppBootstrap() {
     // Register the device with FCM
     await messaging().registerDeviceForRemoteMessages();
@@ -49,7 +49,7 @@ function notifiapp() {
         time: new Date().toLocaleString(),
         tokenID: token,
       }),
-    }).then((response) => {
+    }).then(response => {
       if (response.status == 200) {
         alert('Bạn đã đăng kí nhận thông báo thành công');
       }

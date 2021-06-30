@@ -11,7 +11,7 @@ export default function Routes() {
   const {user, setUser} = useContext(AuthContext);
   const [initializing, setInitializing] = useState(true);
 
-  const onAuthStateChanged = (user) => {
+  const onAuthStateChanged = user => {
     setUser(user);
     if (initializing) setInitializing(false);
   };

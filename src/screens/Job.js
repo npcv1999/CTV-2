@@ -14,8 +14,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import firebase from '../db/firebase';
-import Loading from '../Component/Loading';
-import MaskedTitle from '../Component/MaskedTitle';
+import Loading from '../components/Loading';
+import MaskedTitle from '../components/MaskedTitle';
 import Autocomplete from 'react-native-autocomplete-input';
 import BaseUrl from '../db/BaseUrl';
 export default class Job extends Component {

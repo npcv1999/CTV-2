@@ -8,11 +8,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import 'react-native-gesture-handler';
-import ButtonIcon from '../Component/ButtonIcon';
-import MaskedTitle from '../Component/MaskedTitle';
-import Login from './Login';
-import Register from './Register';
-
+import ButtonIcon from '../components/ButtonIcon';
+import MaskedTitle from '../components/MaskedTitle';
+import Login from '../screens/Login';
+import Register from '../screens/Register';
 
 export default function FrLoginAndRegist() {
   const [state, setState] = useState(0);

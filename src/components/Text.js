@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native';
 
-import {theme} from '../constants';
+import {theme} from '../utils/constants';
 
 export default class Typography extends Component {
   render() {

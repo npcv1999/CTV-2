@@ -6,7 +6,7 @@ import {
   BuilDingScreen,
   FavoriteScreen,
   ProfileScreen,
-} from '../Screens/StackScreen';
+} from '../navigations/StackScreen';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import Job from '../screens/Job';

@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {View} from 'react-native';
-import FBLoginButton from '../Component/FacebookLogin';
-import GoogleSign from '../Component/GoogleSign';
-import {AuthContext} from '../navigation/AuthProvider';
+import FBLoginButton from '../components/FacebookLogin';
+import GoogleSign from '../components/GoogleSign';
+import {AuthContext} from '../navigations/AuthProvider';
 
 export default function ButtonSocial() {
   const {fbLogin} = useContext(AuthContext);

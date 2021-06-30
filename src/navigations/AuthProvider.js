@@ -1,6 +1,9 @@
 import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import {Alert} from 'react-native';
 
@@ -25,9 +28,9 @@ export const AuthProvider = ({children}) => {
               idToken,
               accessToken,
             );
-
             // Sign-in the user with the credential
             await auth().signInWithCredential(googleCredential);
+            console.log('success');
             alert('Đăng nhập thành công');
           } catch (error) {
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -40,6 +43,7 @@ export const AuthProvider = ({children}) => {
               alert('PLAY_SERVICES_NOT_AVAILABLE');
               // play services not available or outdated
             } else {
+              console.log('lỗi', error);
               // some other error happened
             }
           }

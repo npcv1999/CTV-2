@@ -14,8 +14,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import firebase from '../db/firebase';
-import Loading from '../Component/Loading';
-import MaskedTitle from '../Component/MaskedTitle';
+import Loading from '../components/Loading';
+import MaskedTitle from '../components/MaskedTitle';
 import Autocomplete from 'react-native-autocomplete-input';
 import BaseUrl from '../db/BaseUrl';
 export default class TestScreen extends Component {
@@ -31,8 +31,8 @@ export default class TestScreen extends Component {
   async componentDidMount() {
     try {
       await fetch(BaseUrl.baseUrl + 'job.json')
-        .then((res) => res.json())
-        .then((result) => {
+        .then(res => res.json())
+        .then(result => {
           // for (const item in result) {
           //   datas.push(result[item]);
           //   console.log(item);
@@ -47,7 +47,7 @@ export default class TestScreen extends Component {
       console.log(error);
     }
   }
-  renderItem = (obj) => {
+  renderItem = obj => {
     // const {favorite} =this.state;
     return (
       <>
@@ -110,10 +110,10 @@ export default class TestScreen extends Component {
       return [];
     }
     const regex = new RegExp(`${text.replace(/[^a-zA-Z0-9]/g, '')}`, 'i');
-    return datas.filter((item) => item.title.search(regex) >= 0);
+    return datas.filter(item => item.title.search(regex) >= 0);
   }
   searchData(text) {
-    const newData = this.arrayHolder.filter((item) => {
+    const newData = this.arrayHolder.filter(item => {
       const itemData = item.title.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
@@ -157,7 +157,7 @@ export default class TestScreen extends Component {
             autoCorrect={false}
             data={datas.length === 1 && comp(text, datas[0].title) ? [] : datas}
             value={text}
-            onChangeText={(text) => this.searchData(text)}
+            onChangeText={text => this.searchData(text)}
             placeholder="Tìm kiếm"
             flatListProps={{
               renderItem: ({item, index}) => (

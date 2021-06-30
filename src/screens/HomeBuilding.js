@@ -8,7 +8,7 @@ import {
   Text,
   ActivityIndicator,
 } from 'react-native';
-import Loading from '../Component/Loading';
+import Loading from '../components/Loading';
 import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -54,8 +54,8 @@ export default class HomeBuilding extends Component {
     // });
     const url = 'https://congtimviec.firebaseio.com/top.json';
     fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
+      .then(response => response.json())
+      .then(json => {
         this.setState({data: json, loading: false});
       })
       .catch(function (error) {

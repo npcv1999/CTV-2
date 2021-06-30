@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import {AuthContext} from '../navigation/AuthProvider';
+import {AuthContext} from '../navigations/AuthProvider';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Dialog from 'react-native-dialog';
 const WIDTH = Dimensions.get('window').width;

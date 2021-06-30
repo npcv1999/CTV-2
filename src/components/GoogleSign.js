@@ -14,7 +14,7 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
-import {AuthContext} from '../navigation/AuthProvider';
+import {AuthContext} from '../navigations/AuthProvider';
 
 //Sign-in function
 

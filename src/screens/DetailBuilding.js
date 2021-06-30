@@ -21,7 +21,7 @@ import Comment from 'react-native-vector-icons/MaterialCommunityIcons';
 const WIDTH = Dimensions.get('screen').width;
 
 import firebase from '../db/firebase';
-import LoadingComments from '../Component/LoadingComments';
+import LoadingComments from '../components/LoadingComments';
 
 export class BtnComment extends React.Component {
   render() {

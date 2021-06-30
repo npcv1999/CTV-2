@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import ListCrawl from './Home';
-import Building from '../Screens/Building';
-import StackProfile from '../navigation/StackProfile';
-import notifiapp from './notifiapp';
+import ListCrawl from '../screens/Home';
+import Building from '../screens/Building';
+import StackProfile from '../navigations/StackProfile';
+import notifiapp from '../screens/notifiapp';
 
 const Stack = createStackNavigator();
 

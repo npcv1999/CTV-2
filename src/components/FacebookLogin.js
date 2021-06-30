@@ -10,7 +10,7 @@ import {
 import auth from '@react-native-firebase/auth';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {AuthContext} from '../navigation/AuthProvider';
+import {AuthContext} from '../navigations/AuthProvider';
 // async function onFacebookButtonPress() {
 //   // Attempt login with permissions
 //   const result = await LoginManager.logInWithPermissions([

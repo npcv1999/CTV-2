@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 
-import Profile from '../Screens/Profile';
-import Sercurity from '../Screens/Sercurity';
-import FeedBack from '../Screens/FeedBack';
+import Profile from '../screens/Profile';
+import Sercurity from '../screens/Sercurity';
+import FeedBack from '../screens/FeedBack';
 
 const Stack = createStackNavigator();
 export default function StackProfile() {
@@ -42,4 +42,3 @@ export default function StackProfile() {
     </Stack.Navigator>
   );
 }
-const styles = StyleSheet.create({});
