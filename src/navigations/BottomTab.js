@@ -10,6 +10,7 @@ import {
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import Job from '../screens/Job';
+import TopJob from '../screens/TopJob';
 const Tab = createMaterialBottomTabNavigator();
 export default function BottomTab({size = 20}) {
   return (
@@ -19,7 +20,7 @@ export default function BottomTab({size = 20}) {
       barStyle={{backgroundColor: 'white'}}>
       <Tab.Screen
         name="Home"
-        component={Job}
+        component={TopJob}
         options={{
           tabBarLabel: 'Trang chủ',
           tabBarColor: '#3399ff',
