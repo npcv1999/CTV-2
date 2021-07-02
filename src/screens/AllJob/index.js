@@ -199,7 +199,9 @@ export default class Job extends Component {
             flatListProps={{
               renderItem: ({item, index}) => (
                 <TouchableOpacity
-                  onPress={() => this.setState({text: item.title})}>
+                  onPress={() => {
+                    this.searchData(item.title);
+                  }}>
                   <Text style={styles.itemText}>{item.title}</Text>
                 </TouchableOpacity>
               ),
@@ -210,17 +212,6 @@ export default class Job extends Component {
         <View style={{marginTop: 30}}>
           <TopJob></TopJob>
         </View>
-        {/* <View style={{marginTop: 40}}>
-          <Text>
-            Hiển thị{` `}
-            <Text style={{fontWeight: 'bold'}}>{this.state.data.length}</Text>
-            {` `}trong tổng{` `}
-            <Text style={{fontWeight: 'bold'}}>
-              {this.state.sumData.length}
-            </Text>
-            {` `}công việc
-          </Text>
-        </View> */}
         <FlatList
           data={listData}
           ListEmptyComponent={this.ListEmptyComponent}

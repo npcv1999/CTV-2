@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     margin: 5,
+    backgroundColor: 'white',
   },
   textInput: {
     alignItems: 'center',

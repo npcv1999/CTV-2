@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     margin: 5,
     position: 'relative',
     zIndex: 0,
+    backgroundColor: 'white',
   },
   textInput: {
     // alignItems: 'center',

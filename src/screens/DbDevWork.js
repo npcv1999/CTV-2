@@ -96,8 +96,6 @@ export default class DbDevWork extends React.Component {
         // ADD THIS THROW error
         throw error;
       });
-    this.getData();
-    console.log(this.getData);
   }
   //Search item
   // async getData() {
@@ -160,6 +158,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     margin: 5,
+    backgroundColor: 'white',
   },
   textInput: {
     alignItems: 'center',
