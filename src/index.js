@@ -7,12 +7,18 @@
  */
 import 'react-native-gesture-handler';
 import React from 'react';
-import {LogBox} from 'react-native';
+import {LogBox, StatusBar} from 'react-native';
 
-import Providers from './src/navigations';
+import Providers from './navigations';
+import colors from './utils/colors';
 const App = () => {
   LogBox.ignoreAllLogs();
-  return <Providers></Providers>;
+  return (
+    <>
+      <StatusBar animated={true} backgroundColor={colors.cyan} />
+      <Providers></Providers>
+    </>
+  );
   // return <TestScreen></TestScreen>;
 };
 export default App;

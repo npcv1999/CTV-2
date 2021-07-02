@@ -4,26 +4,27 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
   HomeStackScreen,
   BuilDingScreen,
-  FavoriteScreen,
   ProfileScreen,
+  NotifyScreen,
 } from '../navigations/StackScreen';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import Job from '../screens/Job';
+import Job from '../screens/AllJob';
 import TopJob from '../screens/TopJob';
+import colors from '../utils/colors';
 const Tab = createMaterialBottomTabNavigator();
-export default function BottomTab({size = 20}) {
+export default function BottomTab({size = 21}) {
   return (
     <Tab.Navigator
-      activeColor="white"
-      inactiveColor="#303030"
+      activeColor={colors.cyan}
+      inactiveColor={colors.textGray}
       barStyle={{backgroundColor: 'white'}}>
       <Tab.Screen
         name="Home"
-        component={TopJob}
+        component={Job}
         options={{
           tabBarLabel: 'Trang chủ',
-          tabBarColor: '#3399ff',
+
           tabBarIcon: ({color}) => (
             <Icon name="home" color={color} size={size} />
           ),
@@ -34,7 +35,7 @@ export default function BottomTab({size = 20}) {
         component={HomeStackScreen}
         options={{
           tabBarLabel: 'Việc từ trang',
-          tabBarColor: '#ad33ff',
+
           tabBarIcon: ({color}) => (
             <Icon name="pager" color={color} size={size} />
           ),
@@ -45,7 +46,6 @@ export default function BottomTab({size = 20}) {
         component={BuilDingScreen}
         options={{
           tabBarLabel: 'Top công ty',
-          tabBarColor: '#39ac39',
           tabBarIcon: ({color}) => (
             <Icon name="building" color={color} size={size} />
           ),
@@ -53,10 +53,9 @@ export default function BottomTab({size = 20}) {
       />
       <Tab.Screen
         name="Yêu thích"
-        component={FavoriteScreen}
+        component={NotifyScreen}
         options={{
           tabBarLabel: 'Thông báo',
-          tabBarColor: '#FA3E3E',
           tabBarIcon: ({color}) => (
             <Icon name="bell" color={color} size={size} />
           ),
@@ -67,7 +66,6 @@ export default function BottomTab({size = 20}) {
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Tài khoản',
-          tabBarColor: '#ff944d',
           tabBarIcon: ({color}) => (
             <Icon name="user-circle" color={color} size={size} />
           ),

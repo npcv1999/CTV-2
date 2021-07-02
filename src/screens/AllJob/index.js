@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
-import {Image} from 'react-native-elements';
 import {
   Text,
-  StyleSheet,
   View,
   FlatList,
   ActivityIndicator,
   TouchableOpacity,
   Linking,
-  TextInput,
-  LogBox,
-  Platform,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import firebase from '../db/firebase';
-import Loading from '../components/Loading';
-import MaskedTitle from '../components/MaskedTitle';
+// import firebase from '../../db/firebase';
+import Loading from '../../components/Loading';
+import MaskedTitle from '../../components/MaskedTitle';
+import BaseUrl from '../../db/BaseUrl';
+
+import {Image} from 'react-native-elements';
 import Autocomplete from 'react-native-autocomplete-input';
-import BaseUrl from '../db/BaseUrl';
+
+import styles from './style';
+
+import TopJob from '../TopJob';
 export default class Job extends Component {
   constructor(props) {
     super(props);
@@ -48,8 +49,8 @@ export default class Job extends Component {
       //     });
       //--------------------------Convert Object to arr ES6-----------------------
       await fetch(BaseUrl.baseUrl + `job.json`)
-        .then((res) => res.json())
-        .then((result) => {
+        .then(res => res.json())
+        .then(result => {
           this.setState({
             data: Object.values(result).slice(0, 20),
             loading: false,
@@ -61,7 +62,7 @@ export default class Job extends Component {
       console.log(error);
     }
   }
-  renderItem = (obj) => {
+  renderItem = obj => {
     // const {favorite} =this.state;
     return (
       <>
@@ -124,10 +125,10 @@ export default class Job extends Component {
       return [];
     }
     const regex = new RegExp(`${text.replace(/[^a-zA-Z0-9]/g, '')}`, 'i');
-    return datas.filter((item) => item.title.search(regex) >= 0);
+    return datas.filter(item => item.title.search(regex) >= 0);
   }
   searchData(text) {
-    const newData = this.arrayHolder.filter((item) => {
+    const newData = this.arrayHolder.filter(item => {
       const itemData = item.title.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
@@ -141,8 +142,8 @@ export default class Job extends Component {
   //Scroll
   async handleLoadMore(page) {
     await fetch(BaseUrl.baseUrl + `job.json?`)
-      .then((res) => res.json())
-      .then((result) => {
+      .then(res => res.json())
+      .then(result => {
         this.setState({
           page: page + 1,
           data: this.state.data.concat(
@@ -168,15 +169,12 @@ export default class Job extends Component {
     if (this.state.loading) {
       return <Loading></Loading>;
     }
-    console.log(this.state.data);
+    // console.log(this.state.data);
     const listData = this.state.data;
-    const startIndex = this.state.startIndex;
-    const endIndex = this.state.endIndex;
     return (
       <View style={styles.MainContainer}>
         <MaskedTitle style={styles.titleSearchJb}>
-          {' '}
-          Tìm kiếm việc làm
+          Danh sách việc làm
         </MaskedTitle>
         {/* <View style={styles.textInput}>
           <Icon name="search1" size={20}></Icon>
@@ -196,7 +194,7 @@ export default class Job extends Component {
             autoCorrect={false}
             data={datas.length === 1 && comp(text, datas[0].title) ? [] : datas}
             value={text}
-            onChangeText={(text) => this.searchData(text)}
+            onChangeText={text => this.searchData(text)}
             placeholder="Tìm kiếm"
             flatListProps={{
               renderItem: ({item, index}) => (
@@ -208,7 +206,11 @@ export default class Job extends Component {
             }}
           />
         </View>
-        <View style={{marginTop: 40}}>
+
+        <View style={{marginTop: 30}}>
+          <TopJob></TopJob>
+        </View>
+        {/* <View style={{marginTop: 40}}>
           <Text>
             Hiển thị{` `}
             <Text style={{fontWeight: 'bold'}}>{this.state.data.length}</Text>
@@ -218,7 +220,7 @@ export default class Job extends Component {
             </Text>
             {` `}công việc
           </Text>
-        </View>
+        </View> */}
         <FlatList
           data={listData}
           ListEmptyComponent={this.ListEmptyComponent}
@@ -232,122 +234,3 @@ export default class Job extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  MainContainer: {
-    justifyContent: 'center',
-    flex: 1,
-    margin: 5,
-    position: 'relative',
-    zIndex: 0,
-  },
-  textInput: {
-    // alignItems: 'center',
-    // paddingLeft: 10,
-    // flexDirection: 'row',
-    // height: 40,
-    // borderWidth: 1,
-    // borderColor: '#009688',
-    // borderRadius: 8,
-    // backgroundColor: '#FFFF',
-    flexDirection: 'row',
-    // alignItems: 'center',
-    alignSelf: 'center',
-    flex: 1,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 30,
-    height: 150,
-    zIndex: 1,
-  },
-
-  itemText: {
-    fontSize: 15,
-    margin: 2,
-  },
-  container: {
-    //Shadow item
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.18,
-    shadowRadius: 3.67,
-
-    elevation: 2,
-    //
-    padding: 5,
-    height: 'auto',
-    marginLeft: 5,
-    marginRight: 5,
-    flexDirection: 'row',
-    borderRadius: 3.67,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  img: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    flex: 1 / 6,
-    marginRight: 5,
-  },
-  info: {
-    flex: 1,
-    alignItems: 'flex-start',
-  },
-  title: {
-    textAlign: 'auto',
-    fontSize: 18,
-    color: 'black',
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
-    borderBottomWidth: 0.5,
-    borderBottomColor: 'blue',
-  },
-  text: {
-    fontSize: 15,
-  },
-  tag: {
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: 'green',
-  },
-  heart: {
-    alignSelf: 'flex-end',
-    justifyContent: 'flex-end',
-  },
-  separator: {
-    height: 10,
-    width: '100%',
-  },
-  detail: {
-    flex: 1,
-  },
-  textEmpty: {
-    color: 'red',
-    fontSize: 16,
-  },
-  viewEmpty: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  cpn: {
-    fontWeight: '600',
-    color: 'green',
-    marginRight: 5,
-  },
-  money: {
-    color: '#fe0e55',
-  },
-  titleSearchJb: {
-    fontSize: 25,
-    textAlign: 'center',
-    marginBottom: 10,
-    fontWeight: '700',
-  },
-});

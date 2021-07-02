@@ -5,6 +5,7 @@ import ListCrawl from '../screens/Home';
 import Building from '../screens/Building';
 import StackProfile from '../navigations/StackProfile';
 import notifiapp from '../screens/notifiapp';
+import colors from '../utils/colors';
 
 const Stack = createStackNavigator();
 
@@ -13,7 +14,7 @@ function HomeStackScreen() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#ad33ff',
+          backgroundColor: colors.cyan,
         },
       }}>
       <Stack.Screen
@@ -41,12 +42,12 @@ function BuilDingScreen() {
     </Stack.Navigator>
   );
 }
-function FavoriteScreen() {
+function NotifyScreen() {
   return (
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#FA3E3E',
+          backgroundColor: colors.cyan,
         },
       }}>
       <Stack.Screen
@@ -75,7 +76,7 @@ function ProfileScreen() {
   );
 }
 
-export {HomeStackScreen, BuilDingScreen, FavoriteScreen, ProfileScreen};
+export {HomeStackScreen, BuilDingScreen, NotifyScreen, ProfileScreen};
 
 const styles = StyleSheet.create({
   container: {

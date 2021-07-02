@@ -5,6 +5,7 @@ import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import Profile from '../screens/Profile';
 import Sercurity from '../screens/Sercurity';
 import FeedBack from '../screens/FeedBack';
+import colors from '../utils/colors';
 
 const Stack = createStackNavigator();
 export default function StackProfile() {
@@ -14,19 +15,16 @@ export default function StackProfile() {
         name="Home"
         component={Profile}
         options={{
-          headerTintColor: 'white',
-          headerStyle: {
-            backgroundColor: '#ff944d',
-          },
+          headerShown: false,
         }}></Stack.Screen>
       <Stack.Screen
         name="Detail"
         component={Sercurity}
         options={{
           headerTintColor: 'white',
-          headerTitle: 'Chi tiết công ty',
+          headerTitle: 'Chính sách bảo mật',
           headerStyle: {
-            backgroundColor: '#ff944d',
+            backgroundColor: colors.cyan,
           },
         }}></Stack.Screen>
       <Stack.Screen
@@ -36,7 +34,7 @@ export default function StackProfile() {
           headerTintColor: 'white',
           headerTitle: 'Liên hệ',
           headerStyle: {
-            backgroundColor: '#ff944d',
+            backgroundColor: colors.cyan,
           },
         }}></Stack.Screen>
     </Stack.Navigator>

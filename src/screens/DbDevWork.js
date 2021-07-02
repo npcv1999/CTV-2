@@ -100,17 +100,17 @@ export default class DbDevWork extends React.Component {
     console.log(this.getData);
   }
   //Search item
-  async getData() {
-    try {
-      const value = await AsyncStorage.getItem('@search');
-      alert(value);
-      if (value !== null) {
-        this.setState({text: value});
-      }
-    } catch (e) {
-      // error reading value
-    }
-  }
+  // async getData() {
+  //   try {
+  //     const value = await AsyncStorage.getItem('@search');
+  //     alert(value);
+  //     if (value !== null) {
+  //       this.setState({text: value});
+  //     }
+  //   } catch (e) {
+  //     // error reading value
+  //   }
+  // }
   searchData(text) {
     const newData = this.arrayHolder.filter(item => {
       const itemData = item.title.toUpperCase();

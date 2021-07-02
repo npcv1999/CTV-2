@@ -9,6 +9,7 @@ import {
 import {AuthContext} from '../navigations/AuthProvider';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Dialog from 'react-native-dialog';
+import colors from '../utils/colors';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 const DialogLogOut = () => {
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: '#ff8533',
+    backgroundColor: colors.orange,
     color: 'white',
     // height: HEIGHT / 18,
     // width: WIDTH,
@@ -59,10 +60,12 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 5,
     margin: 10,
+    marginHorizontal: 50,
   },
   txtLogout: {
     marginLeft: 10,
     fontSize: 18,
     color: 'white',
+    fontWeight: 'bold',
   },
 });

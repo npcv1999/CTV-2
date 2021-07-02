@@ -7,12 +7,12 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import {AuthContext} from '../navigations/AuthProvider';
+import {AuthContext} from '../../navigations/AuthProvider';
 import Icon from 'react-native-vector-icons/Octicons';
-import {Avatar, Divider} from 'react-native-elements';
-import DialogLogOut from '../components/DialogLogOut';
-import Shape from '../components/Shape';
-const W = Dimensions.get('window').width;
+import DialogLogOut from '../../components/DialogLogOut';
+import Shape from '../../components/Shape';
+
+import styles from './style';
 
 const Profile = ({navigation}) => {
   const {user, logout} = useContext(AuthContext);
@@ -22,16 +22,9 @@ const Profile = ({navigation}) => {
         <Shape block color={'white'}>
           <Shape style={styles.oval}></Shape>
           <Shape style={styles.avt} middle centered>
-            <View
-              style={{
-                width: 90,
-                height: 90,
-                borderRadius: 45,
-                borderWidth: 1,
-                borderColor: '#4747ff',
-              }}>
+            <View style={styles.viewAvt}>
               <Image
-                style={{width: 88, height: 88, borderRadius: 45}}
+                style={{width: 70, height: 70, borderRadius: 35}}
                 source={{
                   uri: user.photoURL,
                 }}></Image>
@@ -67,7 +60,7 @@ const Profile = ({navigation}) => {
           <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
             <View style={styles.about}>
               <Text style={{height: 40}}>
-                <Image source={require('../images/shield.png')}></Image>
+                <Image source={require('../../images/shield.png')}></Image>
                 {'\t'}Chính sách bảo mật
               </Text>
               <Icon name="chevron-right" size={20}></Icon>
@@ -77,7 +70,7 @@ const Profile = ({navigation}) => {
           <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
             <View style={styles.about}>
               <Text style={{height: 40}}>
-                <Image source={require('../images/comments.png')}></Image>
+                <Image source={require('../../images/comments.png')}></Image>
                 {'\t'}Trợ giúp và phản hồi
               </Text>
               <Icon name="chevron-right" size={20}></Icon>
@@ -87,7 +80,7 @@ const Profile = ({navigation}) => {
           <TouchableOpacity>
             <View style={styles.about}>
               <Text style={{height: 40}}>
-                <Image source={require('../images/reply.png')}></Image>
+                <Image source={require('../../images/reply.png')}></Image>
                 {'\t'}Đánh giá ứng dụng
               </Text>
               <Icon name="chevron-right" size={20}></Icon>
@@ -107,80 +100,3 @@ const Profile = ({navigation}) => {
 };
 
 export default Profile;
-
-const styles = StyleSheet.create({
-  avt: {
-    marginTop: 30,
-  },
-  oval: {
-    position: 'absolute',
-    width: W + W / 5,
-    height: W + W / 5,
-    backgroundColor: '#ff9c59',
-    borderRadius: W / 5.8,
-    alignSelf: 'center',
-    top: -W * 0.95,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  info: {
-    justifyContent: 'center',
-    marginLeft: 10,
-    margin: 15,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  text: {
-    fontWeight: 'bold',
-    marginLeft: 10,
-    fontSize: 16,
-    color: '#338533',
-  },
-  txtuser: {
-    alignContent: 'center',
-    fontWeight: 'bold',
-    marginLeft: 10,
-    fontSize: 18,
-    color: '#333333',
-  },
-  txtmail: {
-    alignContent: 'center',
-    fontWeight: 'bold',
-    marginLeft: 10,
-    fontSize: 16,
-    color: '#333333',
-  },
-  txtAbout: {
-    marginTop: 50,
-    fontWeight: 'bold',
-    marginLeft: 10,
-    fontSize: 18,
-    color: '#333333',
-  },
-  viewLogOut: {
-    // flexDirection: 'row',
-    backgroundColor: 'white',
-  },
-  space: {
-    backgroundColor: '#d9d9d9',
-    height: 2,
-  },
-  mail: {
-    backgroundColor: 'white',
-    margin: 15,
-    marginLeft: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  about: {
-    height: 50,
-    justifyContent: 'space-between',
-    backgroundColor: 'white',
-    marginHorizontal: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-});

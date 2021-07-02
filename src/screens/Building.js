@@ -4,8 +4,10 @@ import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import HomeBuilding from '../screens/HomeBuilding';
 import DetailBuilding from '../screens/DetailBuilding';
 import ListJob from '../components/ListJob';
+import colors from '../utils/colors';
 
 const Stack = createStackNavigator();
+
 export default function Building() {
   return (
     <Stack.Navigator initialRouteName="Home" headerMode="screen">
@@ -16,17 +18,7 @@ export default function Building() {
           headerTintColor: 'white',
           headerTitle: 'Top công ty',
           headerStyle: {
-            backgroundColor: '#39ac39',
-          },
-        }}></Stack.Screen>
-      <Stack.Screen
-        name="Detail"
-        component={DetailBuilding}
-        options={{
-          headerTintColor: 'white',
-          headerTitle: 'Chi tiết công ty',
-          headerStyle: {
-            backgroundColor: '#39ac39',
+            backgroundColor: colors.cyan,
           },
         }}></Stack.Screen>
       <Stack.Screen
@@ -36,10 +28,9 @@ export default function Building() {
           headerTintColor: 'white',
           headerTitle: 'Danh sách việc',
           headerStyle: {
-            backgroundColor: '#39ac39',
+            backgroundColor: colors.cyan,
           },
         }}></Stack.Screen>
     </Stack.Navigator>
   );
 }
-const styles = StyleSheet.create({});

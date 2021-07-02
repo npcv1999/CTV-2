@@ -27,7 +27,7 @@ export default class DbITviec extends React.Component {
     this.arrayHolder = [];
     this.add = this.add.bind(this);
   }
-  add = (e) => {
+  add = e => {
     this.setState({
       favorite: !this.state.favorite,
     });
@@ -36,7 +36,7 @@ export default class DbITviec extends React.Component {
   };
 
   //RenderItem for flatlist
-  renderItem = (obj) => {
+  renderItem = obj => {
     // const {favorite} =this.state;
     return (
       <>
@@ -74,7 +74,7 @@ export default class DbITviec extends React.Component {
   };
 
   //Key, Separator, Empty
-  keyExtractor = (item) => item.id;
+  keyExtractor = item => item.id;
   //Separator
   ItemSeparatorComponent = () => <View style={styles.separator}></View>;
   //EmptyItem
@@ -90,8 +90,8 @@ export default class DbITviec extends React.Component {
   componentDidMount() {
     const url = 'https://congtimviec.firebaseio.com/itviec.json';
     fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
+      .then(response => response.json())
+      .then(json => {
         console.log(json);
         this.setState(
           {
@@ -114,15 +114,15 @@ export default class DbITviec extends React.Component {
       });
   }
   //Search item
-  storeData = async (text) => {
-    try {
-      await AsyncStorage.setItem('@search', text);
-    } catch (e) {
-      // saving error
-    }
-  };
+  // storeData = async (text) => {
+  //   try {
+  //     await AsyncStorage.setItem('@search', text);
+  //   } catch (e) {
+  //     // saving error
+  //   }
+  // };
   searchData(text) {
-    const newData = this.arrayHolder.filter((item) => {
+    const newData = this.arrayHolder.filter(item => {
       const itemData = item.title.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
@@ -158,7 +158,7 @@ export default class DbITviec extends React.Component {
         <View style={styles.textInput}>
           <Icon name="search1" size={20}></Icon>
           <TextInput
-            onChangeText={(text) => this.searchData(text)}
+            onChangeText={text => this.searchData(text)}
             value={this.state.text}
             underlineColorAndroid="transparent"
             placeholder="Tìm kiếm ...                                                                       "

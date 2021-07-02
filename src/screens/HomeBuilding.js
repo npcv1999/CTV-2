@@ -100,23 +100,7 @@ export default class HomeBuilding extends Component {
                   style={styles.img}
                   PlaceholderContent={<ActivityIndicator />}></Image>
                 <Text style={styles.title}>{item.title}</Text>
-                <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate('Detail', {index, item})
-                  }>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}>
-                    <Text style={styles.info}>Chi tiết công ty</Text>
-                    <AntDesign
-                      style={styles.info}
-                      name="doubleright"
-                      size={14}></AntDesign>
-                  </View>
-                </TouchableOpacity>
+
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate('ListJob', {index, item})

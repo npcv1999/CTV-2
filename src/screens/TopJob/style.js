@@ -5,12 +5,32 @@ import {W, H} from '../../utils/size';
 
 const styles = StyleSheet.create({
   container: {flex: 1},
-  viewItem: {
-    width: W / 3 - 10,
-    borderRadius: 10,
+  viewLabelNew: {
     alignItems: 'center',
-    backgroundColor: colors.active,
-    padding: 10,
+    flexDirection: 'row',
+    marginVertical: 10,
+    marginHorizontal: 5,
+  },
+  txtLabel: {
+    fontSize: 18,
+    color: colors.orange,
+    fontWeight: 'bold',
+  },
+  viewItem: {
+    width: W - 30,
+    borderRadius: 10,
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.cyan,
+    padding: 15,
+    marginHorizontal: 10,
+  },
+  txtJob: {
+    color: colors.white,
+    fontWeight: 'bold',
+    marginTop: 10,
+    textAlign: 'center',
   },
 });
 export default styles;
