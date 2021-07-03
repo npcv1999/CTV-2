@@ -12,8 +12,7 @@ import Loading from '../components/Loading';
 import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Quote from 'react-native-vector-icons/FontAwesome5';
-import {Image, Tooltip} from 'react-native-elements';
+import {Image} from 'react-native-elements';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 import firebase from '../db/firebase';
@@ -90,6 +89,7 @@ export default class HomeBuilding extends Component {
           }}></View>
         <View style={{flex: 1, marginHorizontal: 5}}>
           <FlatList
+            showsVerticalScrollIndicator={false}
             numColumns={2}
             data={filtered}
             renderItem={({item, index}) => (
