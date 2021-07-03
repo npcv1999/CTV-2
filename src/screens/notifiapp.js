@@ -107,7 +107,24 @@ function notifiapp() {
     // });
   }
 
+  const testGetData = () => {
+    firestore()
+      .collection('users')
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(documentSnapshot => {
+          console.log(
+            'User ID: ',
+            documentSnapshot.id,
+            'Token:',
+            documentSnapshot.data().tokens,
+          );
+        });
+      });
+  };
+
   useEffect(() => {
+    testGetData();
     getData();
     getPayLoad();
     const unsubscribe = messaging().onMessage(async remoteMessage => {
