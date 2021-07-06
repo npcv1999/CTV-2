@@ -7,7 +7,7 @@ export default function Loading() {
       <LottieView
         resizeMode="cover"
         autoSize
-        source={require('../utils/loading/paperplane.json')}
+        source={require('../utils/loading/117-progress-bar.json')}
         autoPlay
         loop
       />

@@ -107,24 +107,43 @@ function notifiapp() {
     // });
   }
 
-  const testGetData = () => {
-    firestore()
-      .collection('users')
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(documentSnapshot => {
-          console.log(
-            'User ID: ',
-            documentSnapshot.id,
-            'Token:',
-            documentSnapshot.data().tokens,
-          );
-        });
-      });
-  };
+  // const resolvedProm = firestore().collection('users').get();
+
+  // let getToken = resolvedProm.then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     return documentSnapshot.data().tokens;
+  //   });
+  // });
+  // async function getMarker() {
+  //   const snapshot = await firestore().collection('users').get();
+  //   return snapshot.docs.map(doc => doc.data().tokens);
+  // }
+
+  // console.log(getMarker());
+
+  // const testGetData = () => {
+  //   firestore()
+  //     .collection('users')
+  //     .get()
+  //     .then(querySnapshot => {
+  //       // querySnapshot.forEach(documentSnapshot => {
+  //       //   console.log(
+  //       //     'User ID: ',
+  //       //     documentSnapshot.id,
+  //       //     'Token:',
+  //       //     documentSnapshot.data().tokens,
+  //       //   );
+  //       // });
+
+  //       querySnapshot.forEach(documentSnapshot => {
+  //         return documentSnapshot.data().tokens;
+  //       });
+  //     });
+  // };
 
   useEffect(() => {
-    testGetData();
+    //testGetData();
+    // console.log('dada', testGetData);
     getData();
     getPayLoad();
     const unsubscribe = messaging().onMessage(async remoteMessage => {
@@ -154,7 +173,18 @@ function notifiapp() {
           {dataNoti?.notification?.title}
         </Text>
         <Text>{dataNoti?.notification?.body}</Text>
-        <Text style={{fontWeight: 'bold'}}>{`Time: ${date}`}</Text>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            marginBottom: 10,
+          }}>{`Time: ${date}`}</Text>
+        <Button
+          title="Đăng ký nhận thông báo"
+          onPress={() =>
+            messaging()
+              .subscribeToTopic('job')
+              .then(() => console.log('Subscribed to topic!'))
+          }></Button>
       </View>
     );
   }
