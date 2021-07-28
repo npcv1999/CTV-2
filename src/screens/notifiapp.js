@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import {StyleSheet, Text, View, Button, Alert} from 'react-native';
+import {StyleSheet, Text, View, Button, FlatList} from 'react-native';
 
 import auth from '@react-native-firebase/auth';
 import messaging from '@react-native-firebase/messaging';
@@ -11,6 +11,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 function notifiapp() {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const [reload, setReload] = useState(true);
 
   const [dataNoti, setDataNoti] = useState([]);
 
@@ -31,26 +33,36 @@ function notifiapp() {
       });
   }
 
-  async function setStringValue(key, value) {
-    try {
-      await AsyncStorage.setItem(key, value);
-      console.log('Done.');
-      return true;
-    } catch (e) {
-      console.error('error');
-      return false;
-    }
-  }
-
   const storeData = async value => {
     try {
-      const jsonValue = JSON.stringify(value);
+      messaging()
+        .subscribeToTopic('job')
+        .then(() => setSuccess(true));
+      // const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem('@sub', 'sub');
-      await AsyncStorage.setItem('@payload', jsonValue);
       console.log('thanh cong');
     } catch (e) {
       // saving error
-      console.log('that bai');
+      console.log(e);
+    }
+  };
+  const addStoreData = async value => {
+    try {
+      const valueItem = await AsyncStorage.getItem('@payload');
+      const array = [];
+      if (valueItem !== null) {
+        const jsonValue = JSON.stringify(value);
+        await AsyncStorage.setItem('@payload', jsonValue);
+        console.log('value', jsonValue);
+        setReload(!reload);
+      } else {
+        const jsonValue = JSON.stringify(value);
+        await AsyncStorage.setItem('@payload', jsonValue);
+        console.log('Tạo lần đầu');
+        setReload(!reload);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -59,6 +71,7 @@ function notifiapp() {
       const value = await AsyncStorage.getItem('@sub');
       if (value !== null && value == 'sub') {
         setSuccess(true);
+        setLoading(false);
         console.log('success');
       }
     } catch (e) {
@@ -71,75 +84,13 @@ function notifiapp() {
       const value = await AsyncStorage.getItem('@payload');
       if (value !== null) {
         setDataNoti(JSON.parse(value));
-        console.log(dataNoti);
+        console.log('data', dataNoti);
       }
     } catch (e) {
       console.log('lỗi get');
       // error reading value
     }
   };
-
-  async function onAppBootstrap() {
-    // Register the device with FCM
-    await messaging().registerDeviceForRemoteMessages();
-
-    // Get the token
-    const token = await messaging().getToken();
-
-    // Save the token
-    console.log(token);
-    saveTokenToDatabase(token);
-    storeData();
-    // fetch('https://congtimviec.firebaseio.com/notifi/users.json', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     time: new Date().toLocaleString(),
-    //     tokenID: token,
-    //   }),
-    // }).then(response => {
-    //   if (response.status == 200) {
-    //     alert('Bạn đã đăng kí nhận thông báo thành công');
-    //   }
-    // });
-  }
-
-  // const resolvedProm = firestore().collection('users').get();
-
-  // let getToken = resolvedProm.then(querySnapshot => {
-  //   querySnapshot.forEach(documentSnapshot => {
-  //     return documentSnapshot.data().tokens;
-  //   });
-  // });
-  // async function getMarker() {
-  //   const snapshot = await firestore().collection('users').get();
-  //   return snapshot.docs.map(doc => doc.data().tokens);
-  // }
-
-  // console.log(getMarker());
-
-  // const testGetData = () => {
-  //   firestore()
-  //     .collection('users')
-  //     .get()
-  //     .then(querySnapshot => {
-  //       // querySnapshot.forEach(documentSnapshot => {
-  //       //   console.log(
-  //       //     'User ID: ',
-  //       //     documentSnapshot.id,
-  //       //     'Token:',
-  //       //     documentSnapshot.data().tokens,
-  //       //   );
-  //       // });
-
-  //       querySnapshot.forEach(documentSnapshot => {
-  //         return documentSnapshot.data().tokens;
-  //       });
-  //     });
-  // };
 
   useEffect(() => {
     //testGetData();
@@ -148,45 +99,42 @@ function notifiapp() {
     getPayLoad();
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       console.log(remoteMessage.notification.title);
-      storeData(remoteMessage);
-      getPayLoad();
-      // setDataNoti(remoteMessage);
+      setReload(!reload);
+      addStoreData(remoteMessage);
     });
-    setLoading(false);
+    // setLoading(false);
+    AsyncStorage.clear();
     return unsubscribe;
-  }, []);
+  }, [reload]);
 
   if (!loading) {
+    console.log('noti', dataNoti);
     let time = dataNoti?.sentTime;
     let date = new Date(time).toLocaleString();
-    return (
-      <View
-        style={{
-          borderWidth: 0.5,
-          padding: 10,
-          borderRadius: 5,
-          marginHorizontal: 10,
-          marginVertical: 5,
-          backgroundColor: 'white',
-        }}>
-        <Text style={{fontWeight: 'bold', fontSize: 18}}>
-          {dataNoti?.notification?.title}
-        </Text>
-        <Text>{dataNoti?.notification?.body}</Text>
-        <Text
+    if (dataNoti.length < 1) return <Text>Thông báo khi có việc</Text>;
+    else
+      return (
+        <View
           style={{
-            fontWeight: 'bold',
-            marginBottom: 10,
-          }}>{`Time: ${date}`}</Text>
-        <Button
-          title="Đăng ký nhận thông báo"
-          onPress={() =>
-            messaging()
-              .subscribeToTopic('job')
-              .then(() => console.log('Subscribed to topic!'))
-          }></Button>
-      </View>
-    );
+            borderWidth: 0.5,
+            padding: 10,
+            borderRadius: 5,
+            marginHorizontal: 10,
+            marginVertical: 5,
+            backgroundColor: 'white',
+          }}>
+          <FlatList></FlatList>
+          <Text style={{fontWeight: 'bold', fontSize: 18}}>
+            {dataNoti?.notification?.title}
+          </Text>
+          <Text>{dataNoti?.notification?.body}</Text>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              marginBottom: 10,
+            }}>{`Time: ${date}`}</Text>
+        </View>
+      );
   }
   return (
     <View
@@ -208,7 +156,9 @@ function notifiapp() {
           <Button title="Nhận thông báo" onPress={() => storeData()} />
         </View>
       ) : (
-        <Text>abc</Text>
+        <View>
+          <Text>Đăng kí nhận thông báo thành công</Text>
+        </View>
       )}
     </View>
   );

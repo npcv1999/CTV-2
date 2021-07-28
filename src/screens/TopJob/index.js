@@ -8,7 +8,7 @@ import colors from '../../utils/colors';
 
 import styles from './style';
 
-import {ActivityIndicator, Colors} from 'react-native-paper';
+import {ActivityIndicator} from 'react-native-paper';
 
 const TopJob = () => {
   const [newJob, setNewJob] = useState([]);

@@ -29,13 +29,12 @@ export default class ListJob extends Component {
     const route = this.props.route.params;
     const item = route.item;
     const index = route.index;
-    const id = index;
-    fetch;
+    const id = index + 1;
     try {
       var commentRef = firebase.database().ref('top/' + id + '/list');
-      commentRef.on('value', (childSnapshot) => {
+      commentRef.on('value', childSnapshot => {
         const data = [];
-        childSnapshot.forEach((doc) => {
+        childSnapshot.forEach(doc => {
           data.push({
             key: doc.key,
             title: doc.toJSON().title,
@@ -54,7 +53,7 @@ export default class ListJob extends Component {
       console.log(error);
     }
   }
-  renderItem = (obj) => {
+  renderItem = obj => {
     // const {favorite} =this.state;
     return (
       <>
